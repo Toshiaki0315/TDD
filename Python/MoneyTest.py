@@ -10,8 +10,9 @@
 # □ 他オブジェクトとの等価性比較
 # ■ 5 CHF * 2 = 10 CHF
 # □ DollarとFrancの重複
-# □ equalsの一般化
+# ■ equalsの一般化
 # □ timesの一般化
+# □ FrancとDollarを比較する
 
 import unittest
 from Dollar import Dollar
@@ -27,6 +28,8 @@ class MoneyTest(unittest.TestCase):
     def testEquality(self):
         self.assertTrue(Dollar(5).__eq__(Dollar(5)))
         self.assertFalse(Dollar(5).__eq__(Dollar(6)))
+        self.assertTrue(Franc(5).__eq__(Franc(5)))
+        self.assertFalse(Franc(5).__eq__(Franc(6)))
 
     def testFrancMultiplication(self):
         five = Franc(5)
