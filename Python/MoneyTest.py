@@ -9,16 +9,15 @@
 # □ nullとの比較
 # □ 他オブジェクトとの等価性比較
 # ■ 5 CHF * 2 = 10 CHF
-# □ DollarとFrancの重複
+# ■ DollarとFrancの重複
 # ■ equalsの一般化
 # ■ timesの一般化
 # ■ FrancとDollarを比較する
 # ■ 通貨の概念
-# □ testFrancMultiplicationを削除する？
+# ■ testFrancMultiplicationを削除する？
 
 import unittest
 from Money import Money
-from Franc import Franc
 
 class MoneyTest(unittest.TestCase):
   
@@ -30,21 +29,11 @@ class MoneyTest(unittest.TestCase):
     def testEquality(self):
         self.assertTrue(Money.dollar(5).__eq__(Money.dollar(5)))
         self.assertFalse(Money.dollar(5).__eq__(Money.dollar(6)))
-        self.assertTrue(Money.franc(5).__eq__(Money.franc(5)))
-        self.assertFalse(Money.franc(5).__eq__(Money.franc(6)))
         self.assertFalse(Money.franc(5).__eq__(Money.dollar(5)))
-
-    def testFrancMultiplication(self):
-        five = Money.franc(5)
-        self.assertEqual(Money.franc(10), five.times(2))
-        self.assertEqual(Money.franc(15), five.times(3))
 
     def testCurrency(self):
         self.assertEqual("USD", Money.dollar(1).currency())
         self.assertEqual("CHF", Money.franc(1).currency())
     
-    def testDifferentClassEquality(self):
-        self.assertTrue(Money(10, "CHF").__eq__(Franc(10, "CHF")))
- 
 if __name__ == '__main__':
     unittest.main()
