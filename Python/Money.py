@@ -13,7 +13,7 @@ class Money(object):
         return str(self.amount) + " " + self.currency_str
 
     def times(self, multiplier):
-        return Franc(self.amount * multiplier, self.currency_str)
+        return Money(self.amount * multiplier, self.currency_str)
     
     def currency(self):
         return self.currency_str
