@@ -1,10 +1,10 @@
 class Money:
     amount = 0
-    __currency = ""
+    currency_str = ""
 
     def __init__(self, amount, currency):
         self.amount = amount
-        self.__currency = currency
+        self.currency_str = currency
 
     def __eq__(self, money):
         return self.amount == money.amount and self.__class__ == money.__class__
@@ -13,7 +13,7 @@ class Money:
         raise NotImplementedError
     
     def currency(self):
-        return self.__currency
+        return self.currency_str
 
     @staticmethod
     def dollar(amount):
