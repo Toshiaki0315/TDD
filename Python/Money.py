@@ -6,8 +6,8 @@ class Money(object):
         self.amount = amount
         self.currency_str = currency
 
-    def __eq__(self, object):
-        return self.amount == object.amount and self.currency().__eq__(object.currency())
+    def __eq__(self, money):
+        return self.amount == money.amount and self.currency().__eq__(money.currency())
 
     def __repr__(self):
         return str(self.amount) + " " + self.currency_str
