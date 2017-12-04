@@ -1,5 +1,8 @@
 # Todo リスト
 # □ $5 + 10CHF = $10(レートが2:1の場合)
+# □ $5 + $5 = $10
+# □ $5 + $5がMoneyを返す
+# □ Bank.reduce(Money)
 # ■ $5 * 2 = $10
 # ■ amountをprivateにする
 # ■ Dollarの副作用どうする？
@@ -17,6 +20,7 @@
 # ■ testFrancMultiplicationを削除する？
 
 import unittest
+from Sum import Sum
 from Money import Money
 from Bank import Bank
 
@@ -42,6 +46,24 @@ class MoneyTest(unittest.TestCase):
         bank = Bank()
         reduced = bank.reduce(sum, "USD")
         self.assertEqual(Money.dollar(10), reduced)
+
+    def testPlusReturnsSum(self):
+        five = Money.dollar(5)
+        result = five.plus(five)
+        sum = result
+        self.assertEqual(five, sum.augend)
+        self.assertEqual(five, sum.addend)
     
+    def testReduceSum(self):
+        sum = Sum(Money.dollar(3), Money.dollar(4))
+        bank = Bank()
+        result = bank.reduce(sum, "USD")
+        self.assertEqual(Money.dollar(7), result)
+
+    def testReduceMoney(self):
+        bank = Bank()
+        result = bank.reduce(Money.dollar(1), "USD")
+        self.assertEqual(Money.dollar(1), result)
+
 if __name__ == '__main__':
     unittest.main()

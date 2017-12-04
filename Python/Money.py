@@ -21,8 +21,11 @@ class Money(Expression):
         return self.currency_str
 
     def plus(self, addend):
-        return Money(self.amount + addend.amount, self.currency_str)
+        return Sum(self, addend)
 
+    def reduce(self, to):
+        return self;
+    
     @staticmethod
     def dollar(amount):
         return Money(amount, "USD")
@@ -30,3 +33,5 @@ class Money(Expression):
     @staticmethod
     def franc(amount):
         return Money(amount, "CHF")
+
+from Sum import Sum
