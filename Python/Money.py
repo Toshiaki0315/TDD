@@ -1,4 +1,6 @@
-class Money(object):
+from Expression import Expression
+
+class Money(Expression):
     amount = None
     currency_str = None
 
@@ -17,6 +19,9 @@ class Money(object):
     
     def currency(self):
         return self.currency_str
+
+    def plus(self, addend):
+        return Money(self.amount + addend.amount, self.currency_str)
 
     @staticmethod
     def dollar(amount):
