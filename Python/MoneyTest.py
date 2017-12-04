@@ -2,7 +2,7 @@
 # □ $5 + 10CHF = $10(レートが2:1の場合)
 # □ $5 + $5 = $10
 # □ $5 + $5がMoneyを返す
-# □ Bank.reduce(Money)
+# ■ Bank.reduce(Money)
 # ■ $5 * 2 = $10
 # ■ amountをprivateにする
 # ■ Dollarの副作用どうする？
@@ -42,22 +42,22 @@ class MoneyTest(unittest.TestCase):
     
     def testSimpleAddition(self):
         five = Money.dollar(5)
-        sum = five.plus(five)
+        ｓ = five.plus(five)
         bank = Bank()
-        reduced = bank.reduce(sum, "USD")
+        reduced = bank.reduce(s, "USD")
         self.assertEqual(Money.dollar(10), reduced)
 
     def testPlusReturnsSum(self):
         five = Money.dollar(5)
         result = five.plus(five)
-        sum = result
-        self.assertEqual(five, sum.augend)
-        self.assertEqual(five, sum.addend)
+        s = result
+        self.assertEqual(five, s.augend)
+        self.assertEqual(five, s.addend)
     
     def testReduceSum(self):
-        sum = Sum(Money.dollar(3), Money.dollar(4))
+        s = Sum(Money.dollar(3), Money.dollar(4))
         bank = Bank()
-        result = bank.reduce(sum, "USD")
+        result = bank.reduce(s, "USD")
         self.assertEqual(Money.dollar(7), result)
 
     def testReduceMoney(self):

@@ -24,8 +24,8 @@ class Money(Expression):
         return Sum(self, addend)
 
     def reduce(self, to):
-        return self;
-    
+        return self
+
     @staticmethod
     def dollar(amount):
         return Money(amount, "USD")
