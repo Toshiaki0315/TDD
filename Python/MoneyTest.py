@@ -3,6 +3,8 @@
 # □ $5 + $5 = $10
 # □ $5 + $5がMoneyを返す
 # ■ Bank.reduce(Money)
+# □ Moneyを変換して換算を行う
+# □ Reduce(Bank, String)
 # ■ $5 * 2 = $10
 # ■ amountをprivateにする
 # ■ Dollarの副作用どうする？
@@ -65,5 +67,10 @@ class MoneyTest(unittest.TestCase):
         result = bank.reduce(Money.dollar(1), "USD")
         self.assertEqual(Money.dollar(1), result)
 
+    def testReduceMoneyDifferentCurrency(self):
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(Money.franc(2), "USD")
+        self.assertEqual(Money.dollar(1), result)
 if __name__ == '__main__':
     unittest.main()
