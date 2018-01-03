@@ -1,10 +1,12 @@
 # Todo リスト
-# □ $5 + 10CHF = $10(レートが2:1の場合)
+# ■ $5 + 10CHF = $10(レートが2:1の場合)
 # ■ $5 + $5 = $10
 # □ $5 + $5がMoneyを返す
 # ■ Bank.reduce(Money)
 # ■ Moneyを変換して換算を行う
 # ■ Reduce(Bank, String)
+# □ Sum.plus
+# □ Expression.times 
 # ■ $5 * 2 = $10
 # ■ amountをprivateにする
 # ■ Dollarの副作用どうする？
@@ -75,6 +77,14 @@ class MoneyTest(unittest.TestCase):
     
     def testIdentityRate(self):
         self.assertEqual(1, Bank().rate("USD", "USD"))
+    
+    def testMixedAddtion(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+        self.assertEqual(Money.dollar(10), result)
     
 if __name__ == '__main__':
     unittest.main()
