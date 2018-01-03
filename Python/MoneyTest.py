@@ -62,6 +62,9 @@ class MoneyTest(unittest.TestCase):
         result = bank.reduce(s, "USD")
         self.assertEqual(Money.dollar(7), result)
 
+    def testIdentityRate(self):
+        self.assertEqual(1, Bank().rate("USD", "USD"))
+        
     def testReduceMoney(self):
         bank = Bank()
         result = bank.reduce(Money.dollar(1), "USD")
