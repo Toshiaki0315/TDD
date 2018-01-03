@@ -5,8 +5,8 @@
 # ■ Bank.reduce(Money)
 # ■ Moneyを変換して換算を行う
 # ■ Reduce(Bank, String)
-# □ Sum.plus
-# □ Expression.times 
+# ■ Sum.plus
+# ■ Expression.times 
 # ■ $5 * 2 = $10
 # ■ amountをprivateにする
 # ■ Dollarの副作用どうする？
@@ -86,5 +86,23 @@ class MoneyTest(unittest.TestCase):
         result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
         self.assertEqual(Money.dollar(10), result)
     
+    def testSumPlusMoney(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        sum = Sum(fiveBucks, tenFrancs).plus(fiveBucks)
+        result = bank.reduce(sum, "USD")
+        self.assertEqual(Money.dollar(15), result)
+    
+    def testSumTimes(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        sum = Sum(fiveBucks, tenFrancs).times(2)
+        result = bank.reduce(sum, "USD")
+        self.assertEqual(Money.dollar(20), result)
+        
 if __name__ == '__main__':
     unittest.main()
