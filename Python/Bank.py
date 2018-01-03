@@ -1,6 +1,7 @@
 class Bank():
     def __init__(self):
         self.rates = dict()
+        
     def reduce(self, source, to_currency):
         return source.reduce(self, to_currency)
 
